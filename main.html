@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <body bgcolor="yellow">
+<center>
+<h1>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------—
+</h1>
+</center>
+<center>
+<div class="form-wrap">
+<div class="profile"><img src="https://image.freepik.com/free-vector/infected-people_52683-41926.jpg">
+
+<h1> Вход </h1>
+<form name="name" action="index.php" method="post">
+<div>
+<label for="Имя пользователя">Имя пользователя</label>
+<input type="text" name="user[name]" />
+<br />
+<label for="Почта">Почта</label>
+<input type="text" name="user[email]" />
+<br />
+<label for="Пароль">Пароль</label>
+<input type="text" name="user[password]" />
+<br />
+
+<a href="map.html">Ввод</a>
+</div>
+
+</form>
+
+
+
+<h1>Регистрация</h1>
+</div>
+<form method="post" action="form.php">
+<div>
+<label for="name">Имя</label>
+<input type="text" name="name" required>
+</div>
+<div class="radio">
+<span>Пол</span>
+<label>
+<input type="radio" name="s" value="мужской">мужской
+<div class="radio-control male"></div>
+</label>
+<label>
+<input type="radio" name="s" value="женский">женский
+<div class="radio-control female"></div>
+</label>
+<div>
+<label for="email">E-mail</label>
+<input type="email" name="email" required>
+</div>
+<div>
+<label for="Пароль">Пароль</label>
+<input type="Пароль" name="Пароль" required>
+</div>
+<div>
+<label for="country">Состояние здоровья</label>
+<select name="country">
+<option>Состояние здоровья</option>
+<option value="Здоров">Здоров</option>
+<option value="Заражен">Заражен</option>
+<option value="Неопределен">Неопределен</option>
+</select>
+<div class="select-arrow"></div>
+</div>
+<a href="map.html">Ввод</a>
+</form>
+</div>
+</center>
+</body>
+</html>
