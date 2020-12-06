@@ -6,13 +6,13 @@ doma=[]   # массив с коэфицентами заражения домо
 kk=0
 time_print = []
 time_print_2 = []
-time_interval = 30
 dangerous_homes = []
 very_dangerous_homes = []
+print ('--- первоначальная настройка ---')
+time_interval = int(input('задайте интервалы времени заражения'))
+print()
 print ('-------- Data base ---------')
 people = '0'        
-for i in range (kol_people):
-	health_people.append([i,0])
 
 
 while people!='':
@@ -27,7 +27,8 @@ while people!='':
 	if people == '':
 		break
 	#информация о человеке, в будующем получение данных с сайта
-	health = int(input('самочувствие')) # актуализация своего состояния
+	print('состояние здоровья: 6 - больной   5 - есть симптомы коронавируса 4 - ожидание тестов 3 - контакт с больным 2 - конакт с неподтверждённым случаем 1 - очень маловероятно болен (контакт с 2) 0 - здоров или контакт с 1')
+	health = int(input('введите своё состояние здоровья')) # актуализация своего состояния
 	for s in range (len(health_people) - 1):
 		if health_people[s][2] == people:
 			if health_people[s][1] > 0:
@@ -42,30 +43,30 @@ while people!='':
 		kol_people+=1
 
 	kol_domov = int(input('сколько точек пребывания '))
-	for i in range (0,1):
-		for l in range (kol_domov):
-			time_people_1 = int(input('начало пребывания '))
+	
+	for l in range (kol_domov):   # заполнение информации о месте и времени посещения (можно несколько мест) 
+		time_people_1 = int(input('начало пребывания '))
 
-			if time_people_1 % time_interval < time_interval // 2:
-				time_people_1 = time_people_1 // time_interval
-			else:
-				time_people_1 = time_people_1 // time_interval + 1
-			time_people_2 = int(input('конец пребывания '))
+		if time_people_1 % time_interval < time_interval // 2:
+			time_people_1 = time_people_1 // time_interval
+		else:
+			time_people_1 = time_people_1 // time_interval + 1
+		time_people_2 = int(input('конец пребывания '))
 
-			if time_people_2 % time_interval < time_interval // 2:
-				time_people_2 = time_people_2 // time_interval
-			else:
-				time_people_2 = time_people_2 // time_interval + 1
-			ooo = 0
-			dom = input('дом ')
-			for i in range (len(doma)): # зачисление нового дома в базу домов
-				if dom == doma[i][0]:
-					ooo = 1
-					break
-			if ooo == 0:
-				doma.append([dom,0])
-			for j in range (time_people_1,time_people_2 + 1):
-				time[j].append([dom,kol_people - 1,health_people[kol_people - 1][1]])
+		if time_people_2 % time_interval < time_interval // 2:
+			time_people_2 = time_people_2 // time_interval
+		else:
+			time_people_2 = time_people_2 // time_interval + 1
+		ooo = 0
+		dom = input('дом ')
+		for i in range (len(doma)): # зачисление нового дома в базу домов
+			if dom == doma[i][0]:
+				ooo = 1
+				break
+		if ooo == 0:
+			doma.append([dom,0])
+		for j in range (time_people_1,time_people_2 + 1):
+			time[j].append([dom,kol_people - 1,health_people[kol_people - 1][1]])
 	for i in range(len(time)):
 		if len(time[i])>1:
 			time_print.append(time[i])
@@ -175,9 +176,9 @@ while people!='':
 	dangerous_homes = [] #опасные и особо опасные дома
 	very_dangerous_homes = [] 
 	for i in range (len(doma)): # обновление коэффицентов на домах, вывод массива домов и просчитывание опасных домов
-		if doma[i][1] > 1000:
+		if doma[i][1] > 30000//time_interval:   # просчёт опасных и особо опасных домов на основе time_interval
 			very_dangerous_homes.append(doma[i][0])
-		elif doma[i][1] > 100:
+		elif doma[i][1] > 3000//time_interval:
 			dangerous_homes.append(doma[i][0])
 		doma[i][1] = 0	
 
@@ -186,12 +187,12 @@ while people!='':
 		print ('особо опасные дома (если зайти, точно заразишься) : ', end = '' )
 		for i in range (len(very_dangerous_homes) - 1 ):
 			print(very_dangerous_homes[i], end = ', ')
-		print(very_dangerous_homes[i])
+		print(very_dangerous_homes[len(very_dangerous_homes)-1])
 	
 	if len (dangerous_homes) != 0:
 		print ('опасные дома: ', end = '' )
 		for i in range (len(dangerous_homes) -1 ):
 			print(dangerous_homes[i], end = ', ')
-		print(dangerous_homes[i])
+		print(dangerous_homes[len(dangerous_homes)-1])
 	
 	
