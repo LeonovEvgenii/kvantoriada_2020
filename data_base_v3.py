@@ -27,7 +27,7 @@ while people!='':
 	if people == '':
 		break
 	#информация о человеке, в будующем получение данных с сайта
-	health = int(input('самочувствие'))
+	health = int(input('самочувствие')) # актуализация своего состояния
 	for s in range (len(health_people) - 1):
 		if health_people[s][2] == people:
 			if health_people[s][1] > 0:
