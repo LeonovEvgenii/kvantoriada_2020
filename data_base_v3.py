@@ -10,6 +10,7 @@ dangerous_homes = []
 very_dangerous_homes = []
 print ('--- первоначальная настройка ---')
 time_interval = int(input('задайте интервалы времени заражения'))
+days = int(input('задайте кол-во дней'))
 print()
 print ('-------- Data base ---------')
 people = '0'        
@@ -17,8 +18,8 @@ people = '0'
 
 while people!='':
 	proverka = 0
-	time = []        # time - масcив, в которм содержится все временные точки 1 дня. точки задаются интервалами time_interval (10 строка)
-	for i in range (0, 24 * 60 + time_interval,time_interval):
+	time = []        # time - масcив, в которм содержится все временные точки определённого количества дней. точки задаются интервалами time_interval (10 строка). Желательно брать time_interval, на которое делится 1440.
+	for i in range (0, 24 * 60 * days + time_interval,time_interval):
 		time.append([i])
 	time_print =[]     # time_print - массив, где будут только важные временные точки (когда примерно находились люди где-то )
 	# проверка введено ли имя
@@ -59,6 +60,7 @@ while people!='':
 			time_people_2 = time_people_2 // time_interval + 1
 		ooo = 0
 		dom = input('дом ')
+
 		for i in range (len(doma)): # зачисление нового дома в базу домов
 			if dom == doma[i][0]:
 				ooo = 1
